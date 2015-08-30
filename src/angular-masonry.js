@@ -178,6 +178,14 @@
               ctrl.scheduleMasonryOnce('reloadItems');
               ctrl.scheduleMasonryOnce('layout');
             });
+            
+            scope.$watch(function(){
+              return element[0].offsetHeight;
+            }, function(newValue, oldValue){
+              if(newValue != oldValue){
+                ctrl.scheduleMasonryOnce('layout');
+              }
+            })
 
             scope.$watch('$index', function () {
               if (index !== undefined && index !== scope.$index) {
